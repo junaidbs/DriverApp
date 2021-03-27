@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "189212200310",
+    "firebase_url": "https://ey-auto-2017a.firebaseio.com",
+    "project_id": "ey-auto-2017a",
+    "storage_bucket": "ey-auto-2017a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189212200310:android:3903bb3481834d9553be57",
+        "android_client_info": {
+          "package_name": "com.cybarz.autocab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189212200310-jeef64ntf3jh7asmh9p44jvlikqk4op7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0-KWAxvcfSl99nA-9iqm1cFc-rt9e6tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101569523125383555314",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189212200310:android:82bea49a751e8b0d53be57",
+        "android_client_info": {
+          "package_name": "com.cybarz.autotest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189212200310-6frehajplj9oi1mmohe1e6oovri7l259.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cybarz.autotest",
+            "certificate_hash": "544ba87a94be5eafe86e2281ecfd6a0af3c73832"
+          }
+        },
+        {
+          "client_id": "189212200310-jeef64ntf3jh7asmh9p44jvlikqk4op7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0-KWAxvcfSl99nA-9iqm1cFc-rt9e6tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101569523125383555314",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189212200310:android:a26d412cecf4712653be57",
+        "android_client_info": {
+          "package_name": "com.cybarz.driverapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189212200310-jeef64ntf3jh7asmh9p44jvlikqk4op7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0-KWAxvcfSl99nA-9iqm1cFc-rt9e6tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101569523125383555314",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

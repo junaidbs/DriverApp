@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgm"
+    android:id="@+id/suparparent"
+    tools:context=".DashboardActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <androidx.cardview.widget.CardView
+            app:cardBackgroundColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:cardElevation="12dp">
+            <LinearLayout
+                android:padding="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/segoeui"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name :">
+
+                </TextView>
+
+                <TextView
+                    android:layout_marginLeft="12dp"
+
+                    android:fontFamily="@font/segoeui"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JUNAID">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:gravity="end"
+
+                    android:layout_height="wrap_content">
+                    <ImageView
+
+
+                        android:src="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp">
+
+                    </ImageView>
+                    <RelativeLayout
+                        android:background="@drawable/rounded"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp">
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+       <fragment
+           android:layout_width="wrap_content"
+           class="com.cybarz.driverapp.HomeFragment"
+           tools:layout="@layout/fragment_home"
+           android:layout_height="wrap_content">
+
+       </fragment>
+
+
+
+
+
+
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        app:itemBackground="@color/bottomnavclr"
+        android:id="@+id/Bottom_nav"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/suparparent"
+
+        app:menu="@menu/bottom_nav"
+
+        >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

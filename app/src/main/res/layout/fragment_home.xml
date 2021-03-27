@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingTop="80dp"
+        >
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="300dp">
+            <RelativeLayout
+
+
+
+                android:layout_width="150dp"
+
+
+                android:layout_height="180dp">
+                <RelativeLayout
+                    android:background="@drawable/starter"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:textColor="#000C0000"
+                        android:fontFamily="@font/seguisb"
+                        android:text="STARTER"
+
+
+                        android:background="#00FFFFFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </Button>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="8dp">
+
+        <TextView
+            android:fontFamily="@font/segoeuib"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="230dp"
+            android:text="Enter your Phone NO:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="42dp">
+
+        </TextView>
+        <EditText
+            android:background="@drawable/edittextimg"
+            android:phoneNumber="true"
+            android:maxLength="10"
+            android:id="@+id/NumberBox"
+
+
+            android:paddingHorizontal="12dp"
+            android:layout_width="match_parent"
+            android:textColor="#000000"
+
+
+            android:layout_height="50dp">
+
+        </EditText>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp">
+            <Button
+                android:id="@+id/submit"
+                android:background="#F12727"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit">
+
+
+            </Button>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
