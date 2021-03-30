@@ -16,7 +16,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        bot_view=(BottomNavigationItemView) findViewById(R.id.Bottom_nav);
+
 
 
 

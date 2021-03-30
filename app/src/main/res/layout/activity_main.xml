@@ -7,17 +7,29 @@
     android:background="@drawable/driverbg"
     tools:context=".MainActivity"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/pgbar"
+            android:layout_marginTop="93dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-<fragment
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    class="com.cybarz.driverapp.login"
-    android:id="@+id/www"
-    tools:layout="@layout/fragment_login"
-    tools:ignore="MissingConstraints">
+        </ProgressBar>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/logfrag"
+        tools:ignore="MissingConstraints">
 
 
-</fragment>
+    </FrameLayout>
 
 
 

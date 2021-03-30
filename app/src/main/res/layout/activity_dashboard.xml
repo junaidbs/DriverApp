@@ -70,6 +70,7 @@
         </androidx.cardview.widget.CardView>
 
        <fragment
+           android:id="@+id/homefrag"
            android:layout_width="wrap_content"
            class="com.cybarz.driverapp.HomeFragment"
            tools:layout="@layout/fragment_home"

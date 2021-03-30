@@ -3,15 +3,30 @@ package com.cybarz.driverapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +37,8 @@ public class login extends Fragment {
     Button sumbit;
     private FirebaseAuth mAuth;
     EditText NumBox;
+    String verifid;
+    final login mllogin;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,8 +49,10 @@ public class login extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     public login() {
         // Required empty public constructor
+        mllogin=this;
     }
 
     /**
@@ -74,6 +93,7 @@ public class login extends Fragment {
         View v= inflater.inflate(R.layout.fragment_login, container, false);
         sumbit=(Button) v.findViewById(R.id.submit);
         NumBox=(EditText)v.findViewById(R.id.NumberBox);
+        System.out.println("getttttttttttttt"+getActivity());
         sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,11 +102,14 @@ public class login extends Fragment {
 
 
                 if(NumBox.getText().length()==10){
+                    ProgressBar pg=getActivity().findViewById(R.id.pgbar);
+                    pg.setVisibility(View.VISIBLE);
                     System.out.println(NumBox.getText());
                     String num=NumBox.getText().toString();
+                    System.out.println(num);
 
-                    int number=Integer.parseInt(num.trim());
-                    System.out.println(number);
+                    authenticate(num,mllogin);
+
 
                 }
                 else {
@@ -101,4 +124,68 @@ public class login extends Fragment {
 
         return v;
     }
+
+
+    public void authenticate(String Phonenumber, final login lg){
+        PhoneAuthOptions options=PhoneAuthOptions.newBuilder(mAuth).setPhoneNumber("+918848542918").setTimeout(60L, TimeUnit.SECONDS).setActivity(getActivity()).setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                System.out.println("verification succes");
+
+                signInWithPhoneAuthCredential(phoneAuthCredential);
+
+
+
+
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+
+                System.out.println("verification failed");
+            }
+
+            @Override
+            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                verifid=s;
+                FragmentTransaction ft=getFragmentManager().beginTransaction();
+                System.out.println("code sended succesfully");
+                otpFragment motpfrg=new otpFragment(lg,s);
+                ft.replace(R.id.logfrag,motpfrg,"otp fragment started").commit();
+
+            }
+        }).build();
+
+        PhoneAuthProvider.verifyPhoneNumber(options);
+
+
+
+    }
+
+    public void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        System.out.println(getActivity());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            //Log.d(TAG, "signInWithCredential:success");
+
+                            FirebaseUser user = task.getResult().getUser();
+                            System.out.println("sign in succesfull");
+                            // Update UI
+                        } else {
+                            // Sign in failed, display a message and update the UI
+                           // Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                System.out.println("sign in failed");
+                                // The verification code entered was invalid
+                            }
+                        }
+                    }
+                });
+    }
+
 }

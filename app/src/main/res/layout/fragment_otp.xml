@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".otpFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="32dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_marginTop="230dp"
+            android:layout_width="wrap_content"
+            android:text="Enter OTP"
+
+            android:textColor="#fff"
+            android:fontFamily="@font/segoeuib"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <in.aabhasjindal.otptextview.OtpTextView
+
+            android:layout_marginTop="23dp"
+            android:id="@+id/otp_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            app:height= "40dp"
+            app:width="40dp"
+            app:bar_enabled="true"
+            app:bar_height="2dp"
+            app:length="4"
+
+            app:otp_text_size="24dp">
+
+        </in.aabhasjindal.otptextview.OtpTextView>
+        <RelativeLayout
+
+            android:paddingTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="12dp"
+            android:gravity="right">
+            <Button
+                android:textColor="#fff"
+                android:text="Submit"
+                android:fontFamily="@font/seguisb"
+                android:background="#D50000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </Button>
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+</FrameLayout>
