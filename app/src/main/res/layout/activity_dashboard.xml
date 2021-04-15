@@ -8,6 +8,37 @@
     android:id="@+id/suparparent"
     tools:context=".DashboardActivity">
 
+    <RelativeLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+
+        android:paddingHorizontal="10dp"
+
+        tools:ignore="MissingConstraints">
+       <androidx.cardview.widget.CardView
+           app:cardBackgroundColor="#fff"
+           app:cardElevation="10dp"
+           app:cardCornerRadius="8dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <fragment
+
+
+               android:layout_marginHorizontal="12dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               class="com.cybarz.driverapp.PreqFragment"
+               android:id="@+id/reqfrg"
+               tools:layout="@layout/fragment_preq"
+               >
+
+           </fragment>
+       </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -69,14 +100,14 @@
 
         </androidx.cardview.widget.CardView>
 
-       <fragment
+       <FrameLayout
            android:id="@+id/homefrag"
            android:layout_width="wrap_content"
            class="com.cybarz.driverapp.HomeFragment"
            tools:layout="@layout/fragment_home"
            android:layout_height="wrap_content">
 
-       </fragment>
+       </FrameLayout>
 
 
 

@@ -39,7 +39,7 @@ public class login extends Fragment {
     EditText NumBox;
     String verifid;
     final login mllogin;
-
+    ProgressBar pg;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -102,7 +102,7 @@ public class login extends Fragment {
 
 
                 if(NumBox.getText().length()==10){
-                    ProgressBar pg=getActivity().findViewById(R.id.pgbar);
+                    pg=getActivity().findViewById(R.id.pgbar);
                     pg.setVisibility(View.VISIBLE);
                     System.out.println(NumBox.getText());
                     String num=NumBox.getText().toString();
@@ -127,6 +127,7 @@ public class login extends Fragment {
 
 
     public void authenticate(String Phonenumber, final login lg){
+        System.out.println("authentication");
         PhoneAuthOptions options=PhoneAuthOptions.newBuilder(mAuth).setPhoneNumber("+918848542918").setTimeout(60L, TimeUnit.SECONDS).setActivity(getActivity()).setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -152,6 +153,7 @@ public class login extends Fragment {
                 FragmentTransaction ft=getFragmentManager().beginTransaction();
                 System.out.println("code sended succesfully");
                 otpFragment motpfrg=new otpFragment(lg,s);
+                pg.setVisibility(View.INVISIBLE);
                 ft.replace(R.id.logfrag,motpfrg,"otp fragment started").commit();
 
             }

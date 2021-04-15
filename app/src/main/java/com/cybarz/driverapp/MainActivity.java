@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
        }
        else {
-           auth.signOut();
+           //auth.signOut();
 
            Intent intent=new Intent(getApplicationContext(),DashboardActivity.class);
            startActivity(intent);

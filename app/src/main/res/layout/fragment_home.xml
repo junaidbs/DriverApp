@@ -3,8 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
+   <LinearLayout
+       android:id="@+id/seccured"
+       android:visibility="visible"
+       android:layout_width="match_parent"
+       android:orientation="vertical"
+       android:gravity="center"
+       android:layout_height="match_parent">
+       <androidx.cardview.widget.CardView
+           app:cardBackgroundColor="@color/white"
+           android:layout_gravity="center"
+           android:visibility="visible"
+           android:layout_width="150dp"
+           android:layout_marginTop="89dp"
+           app:cardElevation="10dp"
+           android:layout_height="200dp">
+           <RelativeLayout
+               android:background="@drawable/seccured"
 
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+
+           </RelativeLayout>
+
+
+
+
+       </androidx.cardview.widget.CardView>
+       <TextView
+           android:paddingTop="20dp"
+           android:textColor="#000000"
+           android:layout_width="wrap_content"
+           android:fontFamily="@font/segoeuisl"
+           android:text="Waiting for Passenger"
+           android:layout_height="wrap_content">
+
+       </TextView>
+   </LinearLayout>
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/authprogress"
+        android:layout_marginTop="26dp"
+
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ProgressBar>
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
 
@@ -13,6 +60,7 @@
         android:gravity="center_vertical"
         android:paddingTop="80dp"
         >
+
 
         <RelativeLayout
 
@@ -28,11 +76,14 @@
 
                 android:layout_height="180dp">
                 <RelativeLayout
+                    android:id="@+id/strterbg"
                     android:background="@drawable/starter"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
+
+                        android:id="@+id/starter"
                         android:textColor="#000C0000"
                         android:fontFamily="@font/seguisb"
                         android:text="STARTER"

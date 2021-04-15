@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +38,7 @@ public class otpFragment extends Fragment {
     public OtpTextView otp;
     login mlogin;
     String mid;
+    ProgressBar pg;
 
 
 
@@ -91,6 +93,7 @@ public class otpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View v= inflater.inflate(R.layout.fragment_otp, container, false);
+       pg=getActivity().findViewById(R.id.pgbar);
        otp=v.findViewById(R.id.otp_view);
        otp.setOtpListener(new OTPListener() {
            @Override
@@ -101,9 +104,11 @@ public class otpFragment extends Fragment {
            @Override
            public void onOTPComplete(String otp) {
 
+               pg.setVisibility(View.VISIBLE);
                System.out.println("otp enterd completed");
                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mid, "123456");
                signInWithPhoneAuthCredential(credential);
+
 
 
 
@@ -172,6 +177,26 @@ public class otpFragment extends Fragment {
 
                         //track info
                         mref.child("driver").child("user").child(uid).child("Trackinfo").setValue(positionInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                System.out.println("Succefully completed");
+
+                                Intent intent=new Intent(getContext(),DashboardActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        Passengerreqfirebase passenger=new Passengerreqfirebase(0,"00000","00000");
+                        mref.child("driver").child("user").child(uid).child("Passangeravail").setValue(passenger).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                System.out.println("Succefully completed");
+
+                                Intent intent=new Intent(getContext(),DashboardActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        History his=new History("xxxxxxxx",0.0,0.0);
+                        mref.child("driver").child("user").child(uid).child("History").setValue(his).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 System.out.println("Succefully completed");
