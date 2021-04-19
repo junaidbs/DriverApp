@@ -1,6 +1,7 @@
 package com.cybarz.driverapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,7 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,16 +35,21 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth auth=FirebaseAuth.getInstance();
         pg=(ProgressBar) findViewById(R.id.pgbar);
         pg.setVisibility(View.INVISIBLE);
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://ey-auto-2017a.firebaseio.com/");
+        DatabaseReference mref=database.getReference();
+
+
 
 
        if(auth.getUid()==null){
+
+
            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
            otpFragment motpfragment=new otpFragment();
            login mlogin=new login();
 
            ft.replace(R.id.logfrag,mlogin,"login fragement called").commit();
-           FirebaseDatabase database = FirebaseDatabase.getInstance("https://ey-auto-2017a.firebaseio.com/");
-           DatabaseReference mref=database.getReference();
+
 
        }
        else {

@@ -19,15 +19,18 @@
 
         tools:ignore="MissingConstraints">
        <androidx.cardview.widget.CardView
+           android:elevation="7dp"
+           android:id="@+id/cardname"
            app:cardBackgroundColor="#fff"
            app:cardElevation="10dp"
            app:cardCornerRadius="8dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
-           <fragment
+           <FrameLayout
 
 
                android:layout_marginHorizontal="12dp"
+
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                class="com.cybarz.driverapp.PreqFragment"
@@ -35,7 +38,7 @@
                tools:layout="@layout/fragment_preq"
                >
 
-           </fragment>
+           </FrameLayout>
        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 

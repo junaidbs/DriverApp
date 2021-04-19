@@ -106,7 +106,7 @@ public class otpFragment extends Fragment {
 
                pg.setVisibility(View.VISIBLE);
                System.out.println("otp enterd completed");
-               PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mid, "123456");
+               PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mid, "920723");
                signInWithPhoneAuthCredential(credential);
 
 
@@ -181,8 +181,8 @@ public class otpFragment extends Fragment {
                             public void onComplete(@NonNull Task<Void> task) {
                                 System.out.println("Succefully completed");
 
-                                Intent intent=new Intent(getContext(),DashboardActivity.class);
-                                startActivity(intent);
+                               // Intent intent=new Intent(getContext(),DashboardActivity.class);
+                               // startActivity(intent);
                             }
                         });
                         Passengerreqfirebase passenger=new Passengerreqfirebase(0,"00000","00000");
@@ -190,9 +190,22 @@ public class otpFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 System.out.println("Succefully completed");
+                                mref.child("driver").child("user").child(uid).child("Passangeravail").child("Fromloc").child("platitude").setValue(1234);
+                                mref.child("driver").child("user").child(uid).child("Passangeravail").child("Fromloc").child("plongitude").setValue(1234);
+                                mref.child("driver").child("user").child(uid).child("Passangeravail").child("Toloc").child("platitude").setValue(1234);
+                                mref.child("driver").child("user").child(uid).child("Passangeravail").child("Toloc").child("plongitude").setValue(1234);
+                                mref.child("driver").child("user").child(uid).child("Passangeravail").child("Isavailable").child("available").setValue(1);
 
-                                Intent intent=new Intent(getContext(),DashboardActivity.class);
-                                startActivity(intent);
+                                mref.child("driver").child("user").child(uid).child("alerts").child("dssignal").child("dallocated").setValue(0);
+                                mref.child("driver").child("user").child(uid).child("driveralert").setValue(0);
+
+                                mref.child("driver").child("user").child(uid).child("token").child("arrayindex").setValue(-1);
+                                mref.child("driver").child("user").child(uid).child("token").child("tokenval").setValue(-1);
+
+
+
+                               // Intent intent=new Intent(getContext(),DashboardActivity.class);
+                                //startActivity(intent);
                             }
                         });
                         History his=new History("xxxxxxxx",0.0,0.0);

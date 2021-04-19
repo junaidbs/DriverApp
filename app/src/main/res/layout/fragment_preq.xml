@@ -82,6 +82,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
                <Button
+                   android:id="@+id/accept"
                    android:backgroundTint="#5B8A72"
 
                    android:layout_marginLeft="42dp"
@@ -97,6 +98,7 @@
                   android:paddingRight="32dp"
                   android:layout_height="wrap_content">
                   <Button
+                      android:id="@+id/decline"
                       android:backgroundTint="@color/red"
 
                       android:text="decline"

@@ -128,7 +128,7 @@ public class login extends Fragment {
 
     public void authenticate(String Phonenumber, final login lg){
         System.out.println("authentication");
-        PhoneAuthOptions options=PhoneAuthOptions.newBuilder(mAuth).setPhoneNumber("+918848542918").setTimeout(60L, TimeUnit.SECONDS).setActivity(getActivity()).setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        PhoneAuthOptions options=PhoneAuthOptions.newBuilder(mAuth).setPhoneNumber("+919207230783").setTimeout(60L, TimeUnit.SECONDS).setActivity(getActivity()).setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 System.out.println("verification succes");

@@ -154,12 +154,18 @@ public class HomeFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println(response);
-                startebg.setVisibility(View.VISIBLE);
-                authprogress.setVisibility(View.INVISIBLE);
-                seccured.setVisibility(View.VISIBLE);
+
                 try {
-                    System.out.println(response.getString("authstatus"));
+
+                    if(response.getInt("authstatus")==1){
+                        System.out.println("success");
+                        System.out.println(response);
+                        startebg.setVisibility(View.INVISIBLE);
+                        authprogress.setVisibility(View.INVISIBLE);
+                        seccured.setVisibility(View.VISIBLE);
+
+
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -168,9 +174,9 @@ public class HomeFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                startebg.setVisibility(View.INVISIBLE);
+                startebg.setVisibility(View.VISIBLE);
                 authprogress.setVisibility(View.INVISIBLE);
-                seccured.setVisibility(View.VISIBLE);
+                seccured.setVisibility(View.INVISIBLE);
                 Toast toast= Toast. makeText(getContext(),"Network error",Toast. LENGTH_SHORT);
 
                 toast. show();
