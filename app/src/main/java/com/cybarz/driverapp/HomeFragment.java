@@ -32,6 +32,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.concurrent.BlockingDeque;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
@@ -50,6 +52,7 @@ public class HomeFragment extends Fragment {
     public ProgressBar authprogress;
     public View startebg;
     public View seccured;
+    private int lock=1;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -124,7 +127,12 @@ public class HomeFragment extends Fragment {
                     public void onLocationChanged(@NonNull Location location) {
                         System.out.println(location.getLatitude());
                         locationManager.removeUpdates(this);
-                        sendCredential(location.getLatitude(),location.getLongitude());
+                        if(lock==1){
+                            lock=0;
+                            sendCredential(location.getLatitude(),location.getLongitude());
+
+                        }
+
 
                     }
                 });
@@ -163,11 +171,23 @@ public class HomeFragment extends Fragment {
                         startebg.setVisibility(View.INVISIBLE);
                         authprogress.setVisibility(View.INVISIBLE);
                         seccured.setVisibility(View.VISIBLE);
+                        lock=1;
 
+
+                    }
+                    else if(response.getInt("authstatus")==2){
+
+                        System.out.println("failed");
+                        System.out.println(response);
+                        startebg.setVisibility(View.VISIBLE);
+                        authprogress.setVisibility(View.INVISIBLE);
+                        seccured.setVisibility(View.INVISIBLE);
+                        lock=1;
 
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    lock=1;
                 }
 
             }
@@ -178,6 +198,7 @@ public class HomeFragment extends Fragment {
                 authprogress.setVisibility(View.INVISIBLE);
                 seccured.setVisibility(View.INVISIBLE);
                 Toast toast= Toast. makeText(getContext(),"Network error",Toast. LENGTH_SHORT);
+                lock=1;
 
                 toast. show();
 
@@ -185,9 +206,9 @@ public class HomeFragment extends Fragment {
             }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                9000,
+                15000,
                 0,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                0));
 
         request.add(jsonObjectRequest);
 

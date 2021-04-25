@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,6 +31,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     ProgressBar pg;
+    private BroadcastReceiver mNetworkReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         pg.setVisibility(View.INVISIBLE);
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://ey-auto-2017a.firebaseio.com/");
         DatabaseReference mref=database.getReference();
+         mNetworkReceiver=new Networkchange();
+        registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
 
 
 
@@ -53,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
        }
        else {
-           //auth.signOut();
+          // auth.signOut();
 
            Intent intent=new Intent(getApplicationContext(),DashboardActivity.class);
            startActivity(intent);

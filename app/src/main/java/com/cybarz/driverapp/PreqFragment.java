@@ -1,7 +1,10 @@
 package com.cybarz.driverapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,12 +15,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.xml.sax.helpers.XMLReaderFactory;
+
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,7 +100,55 @@ public class PreqFragment extends Fragment {
             public void onClick(View view) {
                 accept.setVisibility(View.INVISIBLE);
                 decline.setVisibility(View.INVISIBLE);
-                mref.child("driver").child("user").child(firebaseAuth.getUid()).child("Passangeravail").child("Isavailable").child("available").setValue(1);
+
+                                                                                                                //wait for ack from passenger
+
+                Random val =new Random();
+                mref.child("driver").child("user").child(firebaseAuth.getUid()).child("Passangeravail").child("Isavailable").child("available").setValue(val.nextInt(100)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        FragmentTransaction trs=getFragmentManager().beginTransaction();
+                        //trs.setCustomAnimations(R.anim.slide_down,R.anim.slide_up);
+                        Fragment fr=getFragmentManager().findFragmentById(R.id.reqfrg);
+
+                        final DatabaseReference ref= mref.child("driver").child("user").child(firebaseAuth.getUid()).child("Passangeravail");
+
+                        mref.child("driver").child("user").child(firebaseAuth.getUid()).child("Passangeravail").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                System.out.println(snapshot.child("Fromloc").child("platitude").getValue());
+                                System.out.println(snapshot.child("Fromloc").child("plongitude").getValue());
+                                System.out.println(snapshot.child("Toloc").child("platitude").getValue());
+                                System.out.println(snapshot.child("Toloc").child("plongitude").getValue());
+                                double fromlocla= (double) snapshot.child("Fromloc").child("platitude").getValue();
+                                double fromloclo= (double) snapshot.child("Fromloc").child("plongitude").getValue();
+                                double tolocla= (double) snapshot.child("Toloc").child("plongitude").getValue();
+                                double toloclo= (double) snapshot.child("Toloc").child("plongitude").getValue();
+                                System.out.println(fromlocla);
+                                ref.removeEventListener(this);
+                                Intent intent=new Intent( getContext(), navigationdriverActivity.class);
+                                intent.putExtra("flant",fromlocla);
+                                intent.putExtra("flont",fromloclo);
+                                intent.putExtra("tlant",tolocla);
+                                intent.putExtra("tlont",tolocla);
+                                startActivity(intent);
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+
+
+                        });
+
+                        //trs.remove(fr).commit();
+
+                    }
+                });
                 //accepted further development for realtime tracking
 
 
@@ -105,6 +163,8 @@ public class PreqFragment extends Fragment {
                 PreqFragment preqfragment=new PreqFragment();
                 System.out.println("declined successfully");
                 ft.remove(preqfragment);
+                View v=getActivity().findViewById(R.id.homefrag);
+                v.setVisibility(View.VISIBLE);
 
 
                 ft.replace(R.id.reqfrg,preqfragment,"preq fragement called").commit();
@@ -112,5 +172,10 @@ public class PreqFragment extends Fragment {
             }
         });
          return  v;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
     }
 }

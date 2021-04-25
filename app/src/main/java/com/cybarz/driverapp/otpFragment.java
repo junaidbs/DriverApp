@@ -197,6 +197,8 @@ public class otpFragment extends Fragment {
                                 mref.child("driver").child("user").child(uid).child("Passangeravail").child("Isavailable").child("available").setValue(1);
 
                                 mref.child("driver").child("user").child(uid).child("alerts").child("dssignal").child("dallocated").setValue(0);
+                                mref.child("driver").child("user").child(uid).child("alerts").child("driftwrror").child("driftlostcon").setValue(0);
+
                                 mref.child("driver").child("user").child(uid).child("driveralert").setValue(0);
 
                                 mref.child("driver").child("user").child(uid).child("token").child("arrayindex").setValue(-1);
